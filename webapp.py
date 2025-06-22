@@ -30,7 +30,7 @@ def one_hot(labels, num_classes=10):
 @st.cache_resource
 def load_model():
     model = Generator()
-    model.load_state_dict(torch.load("fast_generator.pth", map_location="cpu"))
+    model.load_state_dict(torch.load("fast_generator1.pth", map_location="cpu"))
     model.eval()
     return model
 

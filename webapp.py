@@ -8,16 +8,19 @@ import numpy as np
 class Generator(nn.Module):
     def __init__(self):
         super().__init__()
-        self.net = nn.Sequential(
-            nn.Linear(110, 128),
+        self.model = nn.Sequential(
+            nn.Linear(110, 256),   # same architecture as training
             nn.ReLU(),
-            nn.Linear(128, 784),
+            nn.Linear(256, 512),
+            nn.ReLU(),
+            nn.Linear(512, 784),
             nn.Tanh()
         )
 
     def forward(self, z, labels):
         x = torch.cat([z, labels], dim=1)
-        return self.net(x)
+        return self.model(x)
+
 
 # One-hot encoding
 def one_hot(labels, num_classes=10):
